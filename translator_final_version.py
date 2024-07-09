@@ -79,10 +79,12 @@ def translate_rows(row):
         if check_if_bangla_text_exists(chars_bengali, current_text):
             print("translating text "+ str(processed_bangla_data)+"/"+str(total_bangla_data))
             translated_text = translate_to_english(current_text)
+            processed_bangla_data = processed_bangla_data + 1
             translated_text_history = convert_to_boiler_plate(row["Id"], column, current_text, translated_text)
             translated_text_list.append(translated_text_history)
             row[column] = translated_text
             print("translation Done!")
+            
     return row
     
 
