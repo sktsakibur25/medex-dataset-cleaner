@@ -1,21 +1,18 @@
 import pandas as pd
 
-# Create a sample dictionary
-data = {
-    'Name': ['John', 'Jane', 'Bob', 'Alice', 'Tom'],
-    'Age': [30, 25, 35, 28, 32],
-    'City': ['New York', 'London', 'Paris', 'Tokyo', 'Sydney'],
-    'Salary': [50000, 60000, 45000, 55000, 65000]
-}
+bangla_column_list = ['Administration', 'Chemical Structure', 'Composition', 'Contraindications',
+                'Description', 'Dosage', 'Dosage & Administration', 'Duration of Treatment',
+                'Indications', 'Interaction', 'Overdose Effects', 'Pharmacology',
+                'Precautions & Warnings', 'Pregnancy & Lactation', 'Reconstitution', 'Side Effects',
+                'Storage Conditions', 'Therapeutic Class', 'Use in Special Populations', 'Common Questions']
 
-# Create the DataFrame from the dictionary
-df = pd.DataFrame(data)
-
-balue = "City"
-def update_salary(row):
-    row["Salary"] = row["Salary"] + 10000
+def remove_text(row):
+    for column in bangla_column_list:
+        row[column] = row[column].replace("I'm not.", "")
     return row
 
-df = df.apply(update_salary, axis=1)
-
-print(df)
+df = pd.read_csv('medex_medicine_dataset_v2_translated.csv', sep=",")
+df = df.fillna("N/A")
+df = df.drop("Unnamed: 0", axis=1)
+df = df.apply(remove_text, axis=1)
+df.to_csv("medex_medicine_dataset_v3.csv")
