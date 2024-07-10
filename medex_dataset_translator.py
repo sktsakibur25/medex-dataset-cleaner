@@ -1,7 +1,7 @@
 import pandas as pd
 pd.set_option('display.max_columns', None)
 
-df = pd.read_csv('medex_medicine_dataset_v1.csv', index_col="Id")
+df = pd.read_csv('medex_medicine_dataset_v2_translated.csv', index_col="Id")
 df = df.fillna("N/A")
 short_df = df.head(10)
 chars_bengali = [

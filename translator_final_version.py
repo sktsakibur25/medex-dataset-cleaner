@@ -61,7 +61,7 @@ def check_if_bangla_text_exists(bangla_char_list, long_string_to_check):
 
 def translate_to_english(bangla_text):
     spitted_text = bangla_text.split("।")
-    spitted_text.remove("")
+    # spitted_text.remove("")cle
     translated_text = ""
     for part_of_text in spitted_text:
         part_of_translated_text = translator(part_of_text,
